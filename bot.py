@@ -4,14 +4,14 @@ from telegram.ext import MessageHandler, Filters, InlineQueryHandler
 import time
 
 
-TOKEN = ''
+TOKEN = ' '
 updater = Updater(token=TOKEN)
 dispatcher = updater.dispatcher
 
 # функция обработки команды '/start'
 def start(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, 
-                             text="Привет,я бот  ты можешь  говорить со мной ")
+                             text="Привет,я бот  ты можешь  говорить со мной  ✌️ :")
 
 # функция обработки текстовых сообщений
 def echo(update, context):
@@ -28,7 +28,15 @@ def echo(update, context):
         text = "Героям Слава!"
     context.bot.send_message(chat_id=update.effective_chat.id, 
                              text=text)    
-
+ @MypyBot.message_handler(commands=['button'])
+def button_message(message):
+    markup=types.ReplyKeyboardMarkup(resize_keyboard=True)
+    item1=types.KeyboardButton("привет")
+    markup.add(item1)
+    MypyBot.send_message(message.chat.id,'Выберите что вам надо',reply_markup=markup)
+button1 = KeyboardButton('1️⃣')
+button2 = KeyboardButton('2️⃣')
+button3 = KeyboardButton('3️⃣')
 # функция обработки команды '/caps'
 def caps(update, context):
     if context.args:
