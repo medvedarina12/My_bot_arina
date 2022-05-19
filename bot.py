@@ -4,7 +4,7 @@ from telegram.ext import MessageHandler, Filters, InlineQueryHandler
 import time
 
 
-TOKEN = '5303804790:AAHqFYXCn1WAmry3l0LueSyAWQ-8GMhylhQ'
+TOKEN = ''
 updater = Updater(token=TOKEN)
 dispatcher = updater.dispatcher
 
