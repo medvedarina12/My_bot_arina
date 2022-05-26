@@ -1,7 +1,9 @@
 import telebot
 from telebot import types
 
-mytoken = ''
+
+with open(r'C:\Users\User\Desktop\programming\My_bot_arina\mytoken.txt', 'r') as ftoken:  
+    mytoken = ftoken.read()
 MypyBot = telebot.TeleBot(token=mytoken, parse_mode = None)
 
 
@@ -13,14 +15,23 @@ def start_message(message):
 @MypyBot.message_handler(commands=['button'])
 def button_message(message):
     markup=types.ReplyKeyboardMarkup(resize_keyboard=True)
-    item1=types.KeyboardButton("привет")
-    markup.add(item1)
+    item1=types.KeyboardButton("btn1")
+    item2=types.KeyboardButton("btn2")
+    # markup=types.InlineKeyboardMarkup()
+    # item1=types.InlineKeyboardButton("btn1", url='https://google.com')
+    # item2=types.InlineKeyboardButton("btn2", url='https://youtube.com')
+    markup.add(item1, item2)
     MypyBot.send_message(message.chat.id,'Выберите что вам надо',reply_markup=markup)
 
 
 @MypyBot.message_handler(content_types = ['text'])
 def replyer(message):
-    MypyBot.reply_to(message, message.text)
+    if message.text == 'btn1':
+        MypyBot.reply_to(message, "выбрана опция 1")
+    elif message.text == 'btn2':\
+        MypyBot.reply_to(message, "выбрана опция 2")
+    else:
+        MypyBot.reply_to(message, message.text)
 
 
 MypyBot.polling()
