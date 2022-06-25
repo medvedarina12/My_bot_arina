@@ -50,6 +50,17 @@ def button_pmenu(message):
     MypyBot.send_message(message.chat.id,'Де Вам зручніше оформити замовлення?',reply_markup=markup)
 
 
+@MypyBot.message_handler(commands=['start_by'])
+def button_pmenu(message):
+    markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
+    item1=types.KeyboardButton("Так,вже обрала")
+    item2=types.KeyboardButton("Ні,потрібен каталог")
+    markup.add(item1, item2)
+    MypyBot.send_message(message.chat.id,'Ви вже обрали які прикраси хочете замовити?',reply_markup=markup)
+
+ 
+
+
 # отладочная функция для отслеживания пользователей
 @MypyBot.message_handler(commands=['users'])
 def show_users(message):
@@ -78,6 +89,23 @@ def show_users(message):
 def replyer(message):
    print(message.text)
 
+
+   match message.text:
+        case "В інсті": 
+            MypyBot.reply_to(message, "Тоді переходь за посиланням https://www.instagram.com/medved_biser.ua/")
+        case "В телеграм боті":
+            MypyBot.reply_to(message, "Розпочнемо замовлення /start_by")
+        case "Так,вже обрала": 
+            MypyBot.reply_to(message, "Скиньте фото прикрас які ви хочете замовити")
+        case "Ні,потрібен каталог":
+            MypyBot.reply_to(message,"Каталог")
+        case _:
+            if users:
+                if users[str(message.chat.id)]['d_checker'] == False \
+                    and users[str(message.chat.id)]['d_cnt'] == 0:
+                    start_message(message)
+            else:
+                start_message(message)
 
 #--------------------#
 #     ENTRY POINT    #
