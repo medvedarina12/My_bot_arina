@@ -34,7 +34,6 @@ def button_message(message):
         url='https://www.instagram.com/s/aGlnaGxpZ2h0OjE3OTA5OTc3ODYyMzkxNTk1?igshid=YmMyMTA2M2Y='
     )
     markup.add(item1, item2)
-    MypyBot.send_message(message.chat.id,'Мои ссылки:',reply_markup=markup)
 
 
 # отладочная функция для отслеживания пользователей
