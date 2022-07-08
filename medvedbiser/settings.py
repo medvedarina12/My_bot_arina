@@ -4,6 +4,7 @@ import json
 
 
 GLOBAL_PATH = os.path.abspath(__file__).replace(os.path.basename(__file__), '')
+ROOT_ID = 5085189951 
 
 with open(
     GLOBAL_PATH + 'token.txt', 
