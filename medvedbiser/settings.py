@@ -6,14 +6,14 @@ import json
 GLOBAL_PATH = os.path.abspath(__file__).replace(os.path.basename(__file__), '')
 ROOT_ID = 5085189951 
 
-with open(
-    GLOBAL_PATH + 'token.txt', 
-    'r'
-) as ftoken:
+with open(GLOBAL_PATH + 'token.txt', 'r') as ftoken:
     mytoken = ftoken.read()
 
-with open(GLOBAL_PATH + 'qbase.json', encoding='utf-8') as json_file:
-    q_base = json.load(json_file)
+with open(GLOBAL_PATH + 'qbase.json', encoding='utf-8') as json_file1:
+    q_base = json.load(json_file1)
+
+with open(GLOBAL_PATH + 'items.json', encoding='utf-8') as json_file2:
+    items_base = json.load(json_file2)
 
 MypyBot = telebot.TeleBot(token=mytoken, parse_mode = None)
 users: dict = dict()  # user session data
@@ -30,6 +30,7 @@ https://www.instagram.com/medved_biser.ua/
 order_template = """
 Заказ від: 
     {0} ;
+
 Назва товару: 
     {1[0]} ;
     
@@ -44,10 +45,14 @@ order_template = """
     
 Адреса: 
     {1[4]} ;
+
 ПІБ замовника: 
     {1[5]} ;
+
 Оплата: 
     {1[6]} ;
+    
 Дата: 
     {1[7]} ;
+    
 """
